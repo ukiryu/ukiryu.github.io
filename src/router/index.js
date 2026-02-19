@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import RegisterPage from '../components/pages/RegisterPage.vue'
 import ToolDetailPage from '../components/pages/ToolDetailPage.vue'
+import InterfaceDetailPage from '../components/pages/InterfaceDetailPage.vue'
 import SchemasPage from '../components/pages/SchemasPage.vue'
 import SchemaDetailPage from '../components/pages/SchemaDetailPage.vue'
 
@@ -17,9 +18,18 @@ const routes = [
     component: RegisterPage,
   },
   {
-    path: '/register/:toolName',
+    path: '/register/tools/:toolName',
     name: 'ToolDetail',
     component: ToolDetailPage,
+  },
+  {
+    path: '/register/interfaces/:interfaceName',
+    name: 'InterfaceDetail',
+    component: InterfaceDetailPage,
+  },
+  {
+    path: '/register/:toolName',
+    redirect: to => ({ path: `/register/tools/${to.params.toolName}` }),
   },
   {
     path: '/schemas',
