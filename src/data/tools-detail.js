@@ -305,9 +305,32 @@ export const toolsDetail = {
   },
 }
 
-// Get tool by name
+// Get tool by name (returns detailed info if available, otherwise basic info)
 export function getTool(name) {
-  return toolsDetail[name] || null
+  // First check if we have detailed info
+  if (toolsDetail[name]) {
+    return toolsDetail[name]
+  }
+
+  // Otherwise, find in toolsList and create a basic detail object
+  const basicTool = toolsList.find(t => t.name === name)
+  if (!basicTool) return null
+
+  // Create a detail object from basic info
+  return {
+    name: basicTool.name,
+    display_name: basicTool.display_name,
+    description: basicTool.description,
+    version: basicTool.versions[0] || 'generic',
+    versions: basicTool.versions,
+    commands: basicTool.commands.map(cmd => ({
+      name: cmd,
+      description: `Execute ${cmd} operation`,
+    })),
+    platforms: ['macos', 'linux', 'windows'],
+    shells: ['unix', 'powershell', 'windows'],
+    category: basicTool.category,
+  }
 }
 
 // Stats
