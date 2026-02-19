@@ -71,10 +71,10 @@ defineProps({
   fill: #204153;
 }
 
-/* Dark mode: bright text with strong glow for contrast */
+/* Dark mode: bright white text with glow for maximum contrast */
 :global(.dark) .logo-text {
-  fill: #8fd4e0;
-  filter: drop-shadow(0 0 12px rgba(143, 212, 224, 0.6));
+  fill: #f0f9fa;
+  filter: drop-shadow(0 0 8px rgba(240, 249, 250, 0.5));
 }
 
 /* Add subtle glow to entire logo in dark mode for dragon parts */

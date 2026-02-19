@@ -3,6 +3,9 @@ export const config = {
   // Base URL for the site
   baseUrl: 'https://www.ukiryu.org',
 
+  // Register branch (change to 'main' or other branch as needed)
+  registerBranch: 'v1',
+
   // Documentation URLs
   docs: {
     ukiryu: 'https://www.ukiryu.org/ukiryu/',

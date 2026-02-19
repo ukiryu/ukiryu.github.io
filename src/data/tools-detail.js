@@ -1,6 +1,109 @@
-// Comprehensive tools data with all details for display
-// Each tool includes full profile information from the register
+// Comprehensive tools data extracted from ukiryu/register
+// Register branch configurable via config.js
 
+// Tool categories for filtering
+export const categories = [
+  'Archive & Compression',
+  'Image Processing',
+  'Video & Audio',
+  'Document Conversion',
+  'System Utilities',
+  'Network',
+  'Development',
+  'Text Processing',
+  'File Management',
+  'Version Control',
+]
+
+// All tools from the register with basic info
+export const toolsList = [
+  // Archive & Compression
+  { name: 'tar', display_name: 'tar', description: 'Archive utility for creating and extracting tape archives', versions: ['gnu', 'bsd'], commands: ['create', 'extract', 'list'], category: 'Archive & Compression' },
+  { name: 'zip', display_name: 'zip', description: 'Package and compress files into archives', versions: ['generic'], commands: ['zip'], category: 'Archive & Compression' },
+  { name: 'unzip', display_name: 'unzip', description: 'List, test, and extract ZIP archives', versions: ['generic'], commands: ['unzip', 'list', 'test'], category: 'Archive & Compression' },
+  { name: 'gzip', display_name: 'gzip', description: 'GNU zip compression utility', versions: ['generic'], commands: ['gzip', 'gunzip', 'gzcat'], category: 'Archive & Compression' },
+  { name: 'bzip2', display_name: 'bzip2', description: 'High-quality data compression program', versions: ['generic'], commands: ['bzip2', 'bunzip2', 'bzcat'], category: 'Archive & Compression' },
+  { name: 'xz', display_name: 'XZ', description: 'LZMA compression utility', versions: ['generic'], commands: ['xz', 'unxz', 'xzcat'], category: 'Archive & Compression' },
+  { name: 'zstd', display_name: 'zstd', description: 'Zstandard compression', versions: ['generic'], commands: ['zstd', 'unzstd', 'zstdcat'], category: 'Archive & Compression' },
+  { name: 'p7zip', display_name: 'p7zip', description: '7-Zip file archiver', versions: ['generic'], commands: ['7z', '7za', '7zr'], category: 'Archive & Compression' },
+
+  // Image Processing
+  { name: 'imagemagick', display_name: 'ImageMagick', description: 'Image Processing Suite for creating, editing, and converting images', versions: ['7.1', '6.9'], commands: ['convert', 'identify', 'mogrify', 'composite'], category: 'Image Processing' },
+  { name: 'convert', display_name: 'ImageMagick Convert', description: 'Image format conversion (ImageMagick 6)', versions: ['6.9'], commands: ['convert'], category: 'Image Processing' },
+  { name: 'magick', display_name: 'ImageMagick Magick', description: 'ImageMagick 7 unified command', versions: ['7.1'], commands: ['magick'], category: 'Image Processing' },
+  { name: 'inkscape', display_name: 'Inkscape', description: 'Vector graphics editor', versions: ['1.3', '1.2'], commands: ['export', 'convert'], category: 'Image Processing' },
+  { name: 'optipng', display_name: 'OptiPNG', description: 'PNG optimizer', versions: ['generic'], commands: ['optimize'], category: 'Image Processing' },
+  { name: 'jpegoptim', display_name: 'jpegoptim', description: 'JPEG optimization tool', versions: ['generic'], commands: ['optimize'], category: 'Image Processing' },
+  { name: 'pngquant', display_name: 'pngquant', description: 'PNG image optimizer with lossy compression', versions: ['generic'], commands: ['quantize'], category: 'Image Processing' },
+  { name: 'gifsicle', display_name: 'gifsicle', description: 'GIF image manipulator', versions: ['generic'], commands: ['optimize', 'edit'], category: 'Image Processing' },
+  { name: 'cwebp', display_name: 'cwebp', description: 'WebP image encoder', versions: ['generic'], commands: ['encode'], category: 'Image Processing' },
+  { name: 'dwebp', display_name: 'dwebp', description: 'WebP image decoder', versions: ['generic'], commands: ['decode'], category: 'Image Processing' },
+  { name: 'exiftool', display_name: 'ExifTool', description: 'Read, write, and manipulate image metadata', versions: ['generic'], commands: ['read', 'write', 'copy'], category: 'Image Processing' },
+
+  // Video & Audio
+  { name: 'ffmpeg', display_name: 'FFmpeg', description: 'Complete solution to record, convert, and stream audio and video', versions: ['8.0', '7.0', '6.1'], commands: ['convert', 'probe', 'extract'], category: 'Video & Audio' },
+  { name: 'sox', display_name: 'SoX', description: 'Sound eXchange - audio processing tool', versions: ['generic'], commands: ['convert', 'play', 'record'], category: 'Video & Audio' },
+
+  // Document Conversion
+  { name: 'ghostscript', display_name: 'Ghostscript', description: 'Interpreter for PostScript and PDF', versions: ['10.0', '9.56'], commands: ['convert', 'merge', 'extract'], category: 'Document Conversion' },
+  { name: 'pandoc', display_name: 'Pandoc', description: 'Universal markup converter', versions: ['3.1'], commands: ['convert'], category: 'Document Conversion' },
+  { name: 'libreoffice', display_name: 'LibreOffice', description: 'Office suite with command-line conversion', versions: ['generic'], commands: ['convert'], category: 'Document Conversion' },
+  { name: 'pdf2ps', display_name: 'pdf2ps', description: 'PDF to PostScript converter', versions: ['generic'], commands: ['convert'], category: 'Document Conversion' },
+  { name: 'pdftk', display_name: 'PDFtk', description: 'PDF toolkit for manipulation', versions: ['generic'], commands: ['merge', 'split', 'rotate'], category: 'Document Conversion' },
+
+  // System Utilities
+  { name: 'cat', display_name: 'cat', description: 'Concatenate and display files', versions: ['generic'], commands: ['cat'], category: 'System Utilities' },
+  { name: 'cut', display_name: 'cut', description: 'Remove sections from each line of files', versions: ['generic'], commands: ['cut'], category: 'System Utilities' },
+  { name: 'head', display_name: 'head', description: 'Output the first part of files', versions: ['generic'], commands: ['head'], category: 'System Utilities' },
+  { name: 'tail', display_name: 'tail', description: 'Output the last part of files', versions: ['generic'], commands: ['tail', 'follow'], category: 'System Utilities' },
+  { name: 'sort', display_name: 'sort', description: 'Sort lines of text', versions: ['gnu', 'bsd'], commands: ['sort'], category: 'System Utilities' },
+  { name: 'wc', display_name: 'wc', description: 'Print newline, word, and byte counts', versions: ['generic'], commands: ['wc'], category: 'System Utilities' },
+  { name: 'tee', display_name: 'tee', description: 'Read from stdin and write to stdout and files', versions: ['generic'], commands: ['tee'], category: 'System Utilities' },
+  { name: 'diff', display_name: 'diff', description: 'Compare files line by line', versions: ['generic'], commands: ['diff', 'cmp'], category: 'System Utilities' },
+  { name: 'xargs', display_name: 'xargs', description: 'Build and execute command lines from input', versions: ['gnu', 'bsd'], commands: ['xargs'], category: 'System Utilities' },
+  { name: 'make', display_name: 'make', description: 'Build automation tool', versions: ['gnu', 'bsd'], commands: ['make'], category: 'System Utilities' },
+  { name: 'htop', display_name: 'htop', description: 'Interactive process viewer', versions: ['generic'], commands: ['htop'], category: 'System Utilities' },
+  { name: 'lsof', display_name: 'lsof', description: 'List open files', versions: ['generic'], commands: ['lsof'], category: 'System Utilities' },
+  { name: 'tree', display_name: 'tree', description: 'List files in directory tree format', versions: ['generic'], commands: ['tree'], category: 'System Utilities' },
+  { name: 'ping', display_name: 'ping', description: 'Send ICMP echo requests', versions: ['gnu', 'bsd'], commands: ['ping'], category: 'System Utilities' },
+
+  // Text Processing
+  { name: 'grep', display_name: 'grep', description: 'Print lines matching a pattern', versions: ['gnu', 'bsd'], commands: ['grep', 'egrep', 'fgrep'], category: 'Text Processing' },
+  { name: 'sed', display_name: 'sed', description: 'Stream editor for filtering and transforming text', versions: ['gnu', 'bsd'], commands: ['sed'], category: 'Text Processing' },
+  { name: 'awk', display_name: 'AWK', description: 'Domain-specific language for text processing', versions: ['gnu', 'bsd'], commands: ['awk'], category: 'Text Processing' },
+  { name: 'jq', display_name: 'jq', description: 'Lightweight command-line JSON processor', versions: ['generic'], commands: ['jq'], category: 'Text Processing' },
+  { name: 'yq', display_name: 'yq', description: 'YAML processor', versions: ['generic'], commands: ['yq'], category: 'Text Processing' },
+  { name: 'yq_jq', display_name: 'yq (jq backend)', description: 'YAML processor using jq', versions: ['generic'], commands: ['yq'], category: 'Text Processing' },
+  { name: 'less', display_name: 'less', description: 'Pager program similar to more', versions: ['generic'], commands: ['less'], category: 'Text Processing' },
+  { name: 'bat', display_name: 'Bat', description: 'Cat clone with syntax highlighting', versions: ['generic'], commands: ['bat'], category: 'Text Processing' },
+
+  // File Management
+  { name: 'find', display_name: 'find', description: 'Search for files in a directory hierarchy', versions: ['gnu', 'bsd'], commands: ['find'], category: 'File Management' },
+  { name: 'fd', display_name: 'fd', description: 'Simple, fast alternative to find', versions: ['generic'], commands: ['fd'], category: 'File Management' },
+  { name: 'fzf', display_name: 'fzf', description: 'Fuzzy finder for command-line', versions: ['generic'], commands: ['fzf'], category: 'File Management' },
+  { name: 'gl', display_name: 'gl', description: 'Fuzzy path finder for git ls-files', versions: ['generic'], commands: ['gl'], category: 'File Management' },
+  { name: 'rg', display_name: 'ripgrep', description: 'Recursively search directories for regex patterns', versions: ['generic'], commands: ['rg'], category: 'File Management' },
+  { name: 'ripgrep-all', display_name: 'ripgrep-all', description: 'ripgrep with searchable archives support', versions: ['generic'], commands: ['rga'], category: 'File Management' },
+  { name: 'rsync', display_name: 'rsync', description: 'Fast incremental file transfer', versions: ['generic'], commands: ['rsync'], category: 'File Management' },
+  { name: 'rclone', display_name: 'rclone', description: 'Rsync for cloud storage', versions: ['generic'], commands: ['rclone'], category: 'File Management' },
+  { name: 'restic', display_name: 'restic', description: 'Fast, secure backup program', versions: ['generic'], commands: ['backup', 'restore'], category: 'File Management' },
+
+  // Network
+  { name: 'curl', display_name: 'cURL', description: 'Command-line tool for transferring data with URLs', versions: ['generic'], commands: ['request', 'download', 'upload'], category: 'Network' },
+  { name: 'wget', display_name: 'wget', description: 'Network downloader', versions: ['generic'], commands: ['download'], category: 'Network' },
+  { name: 'ssh', display_name: 'SSH', description: 'Secure shell protocol client', versions: ['generic'], commands: ['ssh'], category: 'Network' },
+  { name: 'scp', display_name: 'scp', description: 'Secure copy protocol', versions: ['generic'], commands: ['scp'], category: 'Network' },
+  { name: 'yt-dlp', display_name: 'yt-dlp', description: 'Command-line audio/video downloader', versions: ['generic'], commands: ['download'], category: 'Network' },
+
+  // Development
+  { name: 'git', display_name: 'Git', description: 'Distributed version control system', versions: ['generic'], commands: ['clone', 'commit', 'push', 'pull', 'branch', 'checkout'], category: 'Development' },
+  { name: 'ansible', display_name: 'Ansible', description: 'Automation engine for configuring systems', versions: ['generic'], commands: ['playbook', 'adhoc'], category: 'Development' },
+  { name: 'openssl', display_name: 'OpenSSL', description: 'Cryptography toolkit', versions: ['generic'], commands: ['encrypt', 'decrypt', 'cert'], category: 'Development' },
+  { name: 'vim', display_name: 'Vim', description: 'Vi IMproved text editor', versions: ['generic'], commands: ['vim', 'view', 'vimdiff'], category: 'Development' },
+  { name: 'ukiryu', display_name: 'Ukiryu', description: 'Declarative CLI framework', versions: ['generic'], commands: ['ukiryu'], category: 'Development' },
+]
+
+// Detailed tool information for tool detail pages
 export const toolsDetail = {
   imagemagick: {
     name: 'imagemagick',
@@ -30,45 +133,11 @@ export const toolsDetail = {
           { name: 'blur', type: 'string', cli: '-blur', description: 'Blur image (e.g., "0x5" for radiusxsigma)' },
           { name: 'sharpen', type: 'string', cli: '-sharpen', description: 'Sharpen image' },
           { name: 'crop', type: 'string', cli: '-crop', description: 'Cut out rectangular region' },
-          { name: 'gravity', type: 'symbol', cli: '-gravity', values: ['north', 'south', 'east', 'west', 'center', 'northwest', 'northeast', 'southwest', 'southeast'], description: 'Text placement' },
         ],
         flags: [
           { name: 'verbose', cli: '-verbose', description: 'Print detailed information' },
           { name: 'strip', cli: '-strip', description: 'Strip image of all profiles and comments' },
           { name: 'flatten', cli: '-flatten', description: 'Flatten a sequence of images' },
-        ],
-      },
-      {
-        name: 'identify',
-        description: 'Describe the format and characteristics of image files',
-        usage: 'magick identify [options] input-file',
-        subcommand: 'identify',
-        arguments: [
-          { name: 'input', type: 'file', variadic: true, min: 1, position: 'last', description: 'Input file(s) to identify' },
-        ],
-        options: [
-          { name: 'format', type: 'string', cli: '-format', description: 'Output formatted image characteristics' },
-        ],
-        flags: [
-          { name: 'verbose', cli: '-verbose', description: 'Print detailed information' },
-          { name: 'ping', cli: '-ping', description: 'Efficiently determine image attributes' },
-        ],
-      },
-      {
-        name: 'mogrify',
-        description: 'Process image files (overwrites original file)',
-        usage: 'magick mogrify [options] input-file',
-        subcommand: 'mogrify',
-        arguments: [
-          { name: 'inputs', type: 'file', variadic: true, min: 1, position: 'last', description: 'Input file(s) to modify in place' },
-        ],
-        options: [
-          { name: 'resize', type: 'string', cli: '-resize', description: 'Resize image' },
-          { name: 'quality', type: 'integer', cli: '-quality', range: [1, 100], description: 'Compression level' },
-          { name: 'format', type: 'string', cli: '-format', description: 'Output format type' },
-        ],
-        flags: [
-          { name: 'verbose', cli: '-verbose', description: 'Print detailed information' },
         ],
       },
     ],
@@ -99,9 +168,6 @@ export const toolsDetail = {
           { name: 'codec:a', type: 'string', cli: '-c:a', description: 'Audio codec (e.g., aac, mp3)' },
           { name: 'bitrate', type: 'string', cli: '-b:v', description: 'Video bitrate (e.g., 1M)' },
           { name: 'resolution', type: 'string', cli: '-s', description: 'Resolution (e.g., 1920x1080)' },
-          { name: 'fps', type: 'integer', cli: '-r', description: 'Frame rate' },
-          { name: 'start_time', type: 'float', cli: '-ss', description: 'Start time in seconds' },
-          { name: 'duration', type: 'float', cli: '-t', description: 'Duration in seconds' },
         ],
         flags: [
           { name: 'overwrite', cli: '-y', description: 'Overwrite output files' },
@@ -134,12 +200,10 @@ export const toolsDetail = {
           { name: 'device', type: 'string', cli: '-sDEVICE', description: 'Output device (pdfwrite, png16m, etc.)' },
           { name: 'output', type: 'file', cli: '-sOutputFile', description: 'Output file' },
           { name: 'resolution', type: 'integer', cli: '-r', description: 'Resolution in DPI' },
-          { name: 'papersize', type: 'string', cli: '-sPAPERSIZE', description: 'Paper size (a4, letter, etc.)' },
         ],
         flags: [
           { name: 'nopause', cli: '-dNOPAUSE', description: 'Disable pause after each page' },
           { name: 'batch', cli: '-dBATCH', description: 'Exit after processing' },
-          { name: 'quiet', cli: '-dQUIET', description: 'Suppress output' },
         ],
       },
     ],
@@ -167,8 +231,6 @@ export const toolsDetail = {
           { name: 'output', type: 'file', cli: '-o', description: 'Output file' },
           { name: 'from', type: 'string', cli: '-f', description: 'Input format (markdown, html, docx, etc.)' },
           { name: 'to', type: 'string', cli: '-t', description: 'Output format' },
-          { name: 'template', type: 'file', cli: '--template', description: 'Template file' },
-          { name: 'pdf_engine', type: 'string', cli: '--pdf-engine', description: 'PDF engine (pdflatex, wkhtmltopdf, etc.)' },
         ],
         flags: [
           { name: 'standalone', cli: '-s', description: 'Produce standalone output' },
@@ -179,39 +241,6 @@ export const toolsDetail = {
     platforms: ['macos', 'linux', 'windows'],
     shells: ['unix', 'powershell', 'windows'],
     category: 'Document Conversion',
-  },
-
-  inkscape: {
-    name: 'inkscape',
-    display_name: 'Inkscape',
-    homepage: 'https://inkscape.org/',
-    description: 'Vector graphics editor with powerful command-line capabilities.',
-    version: '1.3',
-    versions: ['1.3', '1.2'],
-    commands: [
-      {
-        name: 'export',
-        description: 'Export SVG to various formats',
-        usage: 'inkscape input.svg -o output.png',
-        arguments: [
-          { name: 'input', type: 'file', required: true, description: 'Input SVG file' },
-        ],
-        options: [
-          { name: 'output', type: 'file', cli: '-o', description: 'Output file' },
-          { name: 'type', type: 'string', cli: '--export-type', values: ['png', 'pdf', 'ps', 'eps', 'svg'], description: 'Export format' },
-          { name: 'width', type: 'integer', cli: '-w', description: 'Export width in pixels' },
-          { name: 'height', type: 'integer', cli: '-h', description: 'Export height in pixels' },
-          { name: 'dpi', type: 'integer', cli: '--export-dpi', description: 'Export DPI' },
-        ],
-        flags: [
-          { name: 'export_area_drawing', cli: '--export-area-drawing', description: 'Export drawing area only' },
-          { name: 'export_area_page', cli: '--export-area-page', description: 'Export page area' },
-        ],
-      },
-    ],
-    platforms: ['macos', 'linux', 'windows'],
-    shells: ['unix', 'powershell', 'windows'],
-    category: 'Image Processing',
   },
 
   curl: {
@@ -234,83 +263,16 @@ export const toolsDetail = {
           { name: 'request', type: 'string', cli: '-X', values: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], description: 'HTTP method' },
           { name: 'header', type: 'string', cli: '-H', description: 'HTTP header' },
           { name: 'data', type: 'string', cli: '-d', description: 'Request body data' },
-          { name: 'user', type: 'string', cli: '-u', description: 'Username:password for auth' },
-          { name: 'max_time', type: 'integer', cli: '--max-time', description: 'Maximum time in seconds' },
         ],
         flags: [
           { name: 'silent', cli: '-s', description: 'Silent mode' },
           { name: 'location', cli: '-L', description: 'Follow redirects' },
-          { name: 'insecure', cli: '-k', description: 'Skip SSL verification' },
-          { name: 'verbose', cli: '-v', description: 'Verbose output' },
         ],
       },
     ],
     platforms: ['macos', 'linux', 'windows'],
     shells: ['unix', 'powershell', 'windows'],
     category: 'Network',
-  },
-
-  tar: {
-    name: 'tar',
-    display_name: 'tar',
-    homepage: 'https://www.gnu.org/software/tar/',
-    description: 'Archive utility for creating and extracting tape archives.',
-    version: 'generic',
-    versions: ['gnu', 'bsd'],
-    commands: [
-      {
-        name: 'create',
-        display_name: 'Create archive',
-        description: 'Create a tar archive from files/directories',
-        arguments: [
-          { name: 'inputs', type: 'file', variadic: true, min: 1, required: true, description: 'Files/directories to archive' },
-        ],
-        options: [
-          { name: 'file', type: 'file', required: true, description: 'Archive file name' },
-          { name: 'directory', type: 'string', description: 'Change to directory before processing' },
-        ],
-        flags: [
-          { name: 'verbose', description: 'Verbose mode' },
-          { name: 'gzip', description: 'Compress with gzip' },
-          { name: 'bzip2', description: 'Compress with bzip2' },
-        ],
-      },
-      {
-        name: 'extract',
-        display_name: 'Extract archive',
-        description: 'Extract files from a tar archive',
-        arguments: [
-          { name: 'inputs', type: 'file', description: 'Specific files to extract (empty = all)' },
-        ],
-        options: [
-          { name: 'file', type: 'file', required: true, description: 'Archive file name' },
-          { name: 'directory', type: 'string', description: 'Extract to directory' },
-        ],
-        flags: [
-          { name: 'verbose', description: 'Verbose mode' },
-          { name: 'gzip', description: 'Archive is gzipped' },
-          { name: 'bzip2', description: 'Archive is bzipped' },
-          { name: 'keep_old', description: 'Keep existing files' },
-        ],
-      },
-      {
-        name: 'list',
-        display_name: 'List archive',
-        description: 'List contents of a tar archive',
-        arguments: [
-          { name: 'inputs', type: 'file', description: 'Specific files to list (empty = all)' },
-        ],
-        options: [
-          { name: 'file', type: 'file', required: true, description: 'Archive file name' },
-        ],
-        flags: [
-          { name: 'verbose', description: 'Verbose mode' },
-        ],
-      },
-    ],
-    platforms: ['macos', 'linux', 'windows'],
-    shells: ['unix', 'powershell', 'windows'],
-    category: 'Archive & Compression',
   },
 
   git: {
@@ -336,29 +298,6 @@ export const toolsDetail = {
           { name: 'recursive', cli: '--recursive', description: 'Initialize submodules' },
         ],
       },
-      {
-        name: 'commit',
-        description: 'Record changes to the repository',
-        options: [
-          { name: 'message', type: 'string', cli: '-m', required: true, description: 'Commit message' },
-        ],
-        flags: [
-          { name: 'all', cli: '-a', description: 'Commit all changed files' },
-          { name: 'amend', cli: '--amend', description: 'Amend previous commit' },
-        ],
-      },
-      {
-        name: 'push',
-        description: 'Update remote refs',
-        options: [
-          { name: 'remote', type: 'string', description: 'Remote name' },
-          { name: 'branch', type: 'string', description: 'Branch name' },
-        ],
-        flags: [
-          { name: 'force', cli: '-f', description: 'Force push' },
-          { name: 'set_upstream', cli: '-u', description: 'Set upstream' },
-        ],
-      },
     ],
     platforms: ['macos', 'linux', 'windows'],
     shells: ['unix', 'powershell', 'windows'],
@@ -366,28 +305,14 @@ export const toolsDetail = {
   },
 }
 
-// Tool list for the register page
-export const toolsList = Object.values(toolsDetail).map(tool => ({
-  name: tool.name,
-  display_name: tool.display_name,
-  description: tool.description,
-  versions: tool.versions,
-  commands: tool.commands.map(c => c.name),
-  category: tool.category,
-}))
-
-// Categories
-export const categories = [
-  'Archive & Compression',
-  'Image Processing',
-  'Video & Audio',
-  'Document Conversion',
-  'System Utilities',
-  'Network',
-  'Development',
-]
-
 // Get tool by name
 export function getTool(name) {
   return toolsDetail[name] || null
+}
+
+// Stats
+export const stats = {
+  totalTools: toolsList.length,
+  totalCommands: toolsList.reduce((acc, t) => acc + t.commands.length, 0),
+  categories: categories.length,
 }

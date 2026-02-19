@@ -55,6 +55,6 @@ const linkClasses = computed(() => [
   'px-3 py-2 text-sm font-medium rounded-lg transition-colors',
   props.active
     ? 'text-brand-primary bg-brand-primary/10'
-    : 'text-light-muted dark:text-dark-muted hover:text-light-text dark:hover:text-dark-text hover:bg-light-surface dark:hover:bg-dark-surface',
+    : 'text-light-muted dark:text-gray-300 hover:text-light-text dark:hover:text-white hover:bg-light-surface dark:hover:bg-dark-surface',
 ])
 </script>
