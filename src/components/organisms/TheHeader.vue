@@ -38,7 +38,7 @@
 
         <!-- Mobile menu button -->
         <button
-          class="md:hidden p-2 rounded-lg text-light-muted dark:text-dark-muted hover:bg-light-surface dark:hover:bg-dark-surface"
+          class="md:hidden p-2 rounded-lg text-light-muted dark:text-white hover:bg-light-surface dark:hover:bg-dark-surface"
           @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
           <svg v-if="!isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
