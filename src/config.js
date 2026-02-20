@@ -1,14 +1,14 @@
 // Site configuration
 export const config = {
   // Base URL for the site
-  baseUrl: 'https://www.ukiryu.org',
+  baseUrl: 'https://www.ukiryu.com',
 
   // Register branch (change to 'main' or other branch as needed)
   registerBranch: 'v1',
 
   // Documentation URLs
   docs: {
-    ukiryu: 'https://www.ukiryu.org/ukiryu/',
+    ukiryu: 'https://www.ukiryu.com/ukiryu/',
     register: 'https://github.com/ukiryu/register#readme',
     schemas: 'https://github.com/ukiryu/schemas#readme',
   },
