@@ -89,7 +89,7 @@
             <div>
               <div class="text-xs text-light-muted dark:text-dark-muted uppercase tracking-wider mb-1">Platforms</div>
               <div class="flex flex-wrap gap-1">
-                <span v-for="p in tool.platforms" :key="p" class="text-sm text-light-text dark:text-dark-text">
+                <span v-for="p in allPlatforms" :key="p" class="text-sm text-light-text dark:text-dark-text">
                   {{ p }}
                 </span>
               </div>
@@ -97,7 +97,7 @@
             <div>
               <div class="text-xs text-light-muted dark:text-dark-muted uppercase tracking-wider mb-1">Shells</div>
               <div class="flex flex-wrap gap-1">
-                <span v-for="s in tool.shells" :key="s" class="text-sm text-light-text dark:text-dark-text">
+                <span v-for="s in allShells" :key="s" class="text-sm text-light-text dark:text-dark-text">
                   {{ s }}
                 </span>
               </div>
@@ -106,6 +106,29 @@
           <div v-if="tool.aliases && tool.aliases.length" class="mt-4">
             <span class="text-xs text-light-muted dark:text-dark-muted uppercase tracking-wider">Aliases: </span>
             <span class="text-sm font-mono text-brand-primary">{{ tool.aliases.join(', ') }}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Profiles -->
+      <section v-if="tool.profiles && tool.profiles.length" class="py-6 border-b border-light-border dark:border-dark-border">
+        <div class="container-narrow">
+          <h2 class="text-xl font-bold mb-4 text-light-text dark:text-dark-text">Profiles</h2>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div v-for="profile in tool.profiles" :key="profile.name" class="p-4 rounded-lg bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border">
+              <div class="font-semibold text-light-text dark:text-dark-text mb-2">{{ profile.display_name || profile.name }}</div>
+              <div class="text-sm space-y-1">
+                <div v-if="profile.platforms" class="text-light-muted dark:text-dark-muted">
+                  <span class="font-medium">Platforms:</span> {{ profile.platforms.join(', ') }}
+                </div>
+                <div v-if="profile.shells" class="text-light-muted dark:text-dark-muted">
+                  <span class="font-medium">Shells:</span> {{ profile.shells.join(', ') }}
+                </div>
+                <div v-if="profile.version" class="text-light-muted dark:text-dark-muted">
+                  <span class="font-medium">Version:</span> {{ profile.version }}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -143,6 +166,7 @@
                       <tr class="border-b border-light-border dark:border-dark-border">
                         <th class="text-left py-2 px-3 font-medium text-light-text dark:text-dark-text">Name</th>
                         <th class="text-left py-2 px-3 font-medium text-light-text dark:text-dark-text">Type</th>
+                        <th class="text-left py-2 px-3 font-medium text-light-text dark:text-dark-text">Position</th>
                         <th class="text-left py-2 px-3 font-medium text-light-text dark:text-dark-text">Required</th>
                         <th class="text-left py-2 px-3 font-medium text-light-text dark:text-dark-text">Description</th>
                       </tr>
@@ -152,10 +176,13 @@
                         <td class="py-2 px-3 font-mono text-brand-primary">{{ arg.name }}</td>
                         <td class="py-2 px-3">
                           <span class="px-1.5 py-0.5 text-xs rounded bg-light-surface dark:bg-dark-surface">{{ arg.type }}</span>
-                          <span v-if="arg.variadic" class="ml-1 text-xs text-light-muted dark:text-dark-muted">(variadic)</span>
+                          <span v-if="arg.variadic" class="ml-1 text-xs text-purple-400">variadic{{ arg.min ? ` (min: ${arg.min})` : '' }}</span>
+                        </td>
+                        <td class="py-2 px-3 text-light-muted dark:text-dark-muted">
+                          {{ arg.position || '-' }}
                         </td>
                         <td class="py-2 px-3">
-                          <span v-if="arg.required" class="text-green-500">✓</span>
+                          <span v-if="arg.required !== false" class="text-green-500">✓</span>
                           <span v-else class="text-light-muted dark:text-dark-muted">-</span>
                         </td>
                         <td class="py-2 px-3 text-light-muted dark:text-dark-muted">{{ arg.description }}</td>
@@ -171,18 +198,70 @@
                 <div class="space-y-2">
                   <div v-for="opt in cmd.options" :key="opt.name" class="flex flex-col sm:flex-row sm:items-start gap-2 p-3 rounded-lg bg-light-bg dark:bg-dark-bg">
                     <div class="sm:w-48 flex-shrink-0">
-                      <span class="font-mono text-sm text-brand-primary">{{ opt.cli }}</span>
+                      <span class="font-mono text-sm text-brand-primary">{{ opt.cli || `--${opt.name}` }}</span>
                       <span v-if="opt.required" class="ml-2 text-xs text-red-400">*required</span>
                     </div>
                     <div class="flex-1">
                       <div class="text-sm text-light-text dark:text-dark-text">{{ opt.description }}</div>
                       <div class="flex flex-wrap gap-2 mt-1">
                         <span class="px-1.5 py-0.5 text-xs rounded bg-light-surface dark:bg-dark-surface">type: {{ opt.type }}</span>
+                        <span v-if="opt.assignment_delimiter" class="px-1.5 py-0.5 text-xs rounded bg-blue-500/20 text-blue-400">
+                          delimiter: {{ opt.assignment_delimiter }}
+                        </span>
+                        <span v-if="opt.separator" class="px-1.5 py-0.5 text-xs rounded bg-orange-500/20 text-orange-400">
+                          separator: "{{ opt.separator }}"
+                        </span>
+                        <span v-if="opt.format" class="px-1.5 py-0.5 text-xs rounded bg-purple-500/20 text-purple-400">
+                          format: {{ opt.format }}
+                        </span>
                         <span v-if="opt.values" class="px-1.5 py-0.5 text-xs rounded bg-brand-primary/10 text-brand-primary">
                           values: {{ opt.values.join(', ') }}
                         </span>
                         <span v-if="opt.range" class="px-1.5 py-0.5 text-xs rounded bg-brand-primary/10 text-brand-primary">
                           range: {{ opt.range[0] }}-{{ opt.range[1] }}
+                        </span>
+                        <span v-if="opt.default !== undefined" class="px-1.5 py-0.5 text-xs rounded bg-green-500/20 text-green-400">
+                          default: {{ opt.default }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Post Options (options that come after arguments) -->
+              <div v-if="cmd.post_options && cmd.post_options.length" class="mb-6">
+                <h4 class="text-sm font-semibold text-light-text dark:text-dark-text mb-3 uppercase tracking-wider">
+                  Post-Options
+                  <span class="text-xs font-normal text-light-muted dark:text-dark-muted ml-2">(options after arguments)</span>
+                </h4>
+                <div class="space-y-2">
+                  <div v-for="opt in cmd.post_options" :key="opt.name" class="flex flex-col sm:flex-row sm:items-start gap-2 p-3 rounded-lg bg-light-bg dark:bg-dark-bg border-l-2 border-brand-primary">
+                    <div class="sm:w-48 flex-shrink-0">
+                      <span class="font-mono text-sm text-brand-primary">{{ opt.cli || `--${opt.name}` }}</span>
+                      <span v-if="opt.required" class="ml-2 text-xs text-red-400">*required</span>
+                    </div>
+                    <div class="flex-1">
+                      <div class="text-sm text-light-text dark:text-dark-text">{{ opt.description }}</div>
+                      <div class="flex flex-wrap gap-2 mt-1">
+                        <span class="px-1.5 py-0.5 text-xs rounded bg-light-surface dark:bg-dark-surface">type: {{ opt.type }}</span>
+                        <span v-if="opt.assignment_delimiter" class="px-1.5 py-0.5 text-xs rounded bg-blue-500/20 text-blue-400">
+                          delimiter: {{ opt.assignment_delimiter }}
+                        </span>
+                        <span v-if="opt.separator" class="px-1.5 py-0.5 text-xs rounded bg-orange-500/20 text-orange-400">
+                          separator: "{{ opt.separator }}"
+                        </span>
+                        <span v-if="opt.format" class="px-1.5 py-0.5 text-xs rounded bg-purple-500/20 text-purple-400">
+                          format: {{ opt.format }}
+                        </span>
+                        <span v-if="opt.values" class="px-1.5 py-0.5 text-xs rounded bg-brand-primary/10 text-brand-primary">
+                          values: {{ opt.values.join(', ') }}
+                        </span>
+                        <span v-if="opt.range" class="px-1.5 py-0.5 text-xs rounded bg-brand-primary/10 text-brand-primary">
+                          range: {{ opt.range[0] }}-{{ opt.range[1] }}
+                        </span>
+                        <span v-if="opt.default !== undefined" class="px-1.5 py-0.5 text-xs rounded bg-green-500/20 text-green-400">
+                          default: {{ opt.default }}
                         </span>
                       </div>
                     </div>
@@ -193,12 +272,49 @@
               <!-- Flags -->
               <div v-if="cmd.flags && cmd.flags.length">
                 <h4 class="text-sm font-semibold text-light-text dark:text-dark-text mb-3 uppercase tracking-wider">Flags</h4>
-                <div class="flex flex-wrap gap-2">
-                  <div v-for="flag in cmd.flags" :key="flag.name" class="px-3 py-2 rounded-lg bg-light-bg dark:bg-dark-bg">
-                    <span class="font-mono text-sm text-brand-primary">{{ flag.cli || `--${flag.name}` }}</span>
-                    <span class="text-sm text-light-muted dark:text-dark-muted ml-2">{{ flag.description }}</span>
+                <div class="space-y-2">
+                  <div v-for="flag in cmd.flags" :key="flag.name" class="p-3 rounded-lg bg-light-bg dark:bg-dark-bg">
+                    <div class="flex items-start justify-between">
+                      <div>
+                        <span class="font-mono text-sm text-brand-primary">{{ flag.cli || `--${flag.name}` }}</span>
+                        <span v-if="flag.cli_short" class="font-mono text-sm text-brand-primary/70 ml-2">({{ flag.cli_short }})</span>
+                      </div>
+                      <span v-if="flag.default !== undefined" class="px-1.5 py-0.5 text-xs rounded bg-green-500/20 text-green-400">
+                        default: {{ flag.default }}
+                      </span>
+                    </div>
+                    <p class="text-sm text-light-muted dark:text-dark-muted mt-1">{{ flag.description }}</p>
+                    <div v-if="flag.position_constraint || flag.conflicts_with" class="flex flex-wrap gap-2 mt-2">
+                      <span v-if="flag.position_constraint" class="px-1.5 py-0.5 text-xs rounded bg-yellow-500/20 text-yellow-400">
+                        position: {{ flag.position_constraint }}
+                      </span>
+                      <span v-if="flag.conflicts_with" class="px-1.5 py-0.5 text-xs rounded bg-red-500/20 text-red-400">
+                        conflicts: {{ flag.conflicts_with.join(', ') }}
+                      </span>
+                    </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Smoke Tests -->
+      <section v-if="tool.smoke_tests && tool.smoke_tests.length" class="section-padding bg-light-surface/50 dark:bg-dark-surface/50">
+        <div class="container-narrow">
+          <h2 class="text-2xl font-bold mb-6 text-light-text dark:text-dark-text">Smoke Tests</h2>
+          <div class="space-y-3">
+            <div v-for="(test, idx) in tool.smoke_tests" :key="idx" class="p-4 rounded-lg bg-light-bg dark:bg-dark-bg border border-light-border dark:border-dark-border">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2 py-0.5 text-xs rounded bg-brand-primary/10 text-brand-primary font-mono">{{ test.command }}</span>
+                <span class="text-sm text-light-muted dark:text-dark-muted">{{ test.description || `Test ${idx + 1}` }}</span>
+              </div>
+              <div v-if="test.arguments" class="text-sm font-mono text-light-text dark:text-dark-text">
+                <span class="text-light-muted dark:text-dark-muted">args:</span> {{ test.arguments.join(' ') }}
+              </div>
+              <div v-if="test.options" class="text-sm font-mono text-light-text dark:text-dark-text mt-1">
+                <span class="text-light-muted dark:text-dark-muted">opts:</span> {{ JSON.stringify(test.options) }}
               </div>
             </div>
           </div>
@@ -229,12 +345,37 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import BaseButton from '../atoms/BaseButton.vue'
 import CodeBlock from '../molecules/CodeBlock.vue'
-import { getTool } from '../../data/tools-detail'
+import { getTool } from '../../data/generated/tools'
 import config from '../../config'
 
 const route = useRoute()
 const toolName = computed(() => route.params.toolName)
 const tool = computed(() => getTool(toolName.value))
+
+// Aggregate platforms and shells from profiles if available
+const allPlatforms = computed(() => {
+  if (!tool.value) return []
+  if (tool.value.profiles && tool.value.profiles.length) {
+    const platforms = new Set()
+    tool.value.profiles.forEach(p => {
+      if (p.platforms) p.platforms.forEach(pl => platforms.add(pl))
+    })
+    return Array.from(platforms)
+  }
+  return tool.value.platforms || []
+})
+
+const allShells = computed(() => {
+  if (!tool.value) return []
+  if (tool.value.profiles && tool.value.profiles.length) {
+    const shells = new Set()
+    tool.value.profiles.forEach(p => {
+      if (p.shells) p.shells.forEach(s => shells.add(s))
+    })
+    return Array.from(shells)
+  }
+  return tool.value.shells || []
+})
 
 const usageExample = computed(() => {
   if (!tool.value) return ''

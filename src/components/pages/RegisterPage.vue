@@ -198,8 +198,8 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { toolsList, categories, getTotalImplementations } from '../../data/tools-detail'
-import { interfacesList } from '../../data/interfaces'
+import { toolsList, categories, getTotalImplementations } from '../../data/generated/tools'
+import { interfacesList } from '../../data/generated/interfaces'
 
 const searchQuery = ref('')
 const selectedCategory = ref(null)

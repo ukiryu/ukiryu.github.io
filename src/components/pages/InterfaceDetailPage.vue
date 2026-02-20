@@ -232,7 +232,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import BaseButton from '../atoms/BaseButton.vue'
 import CodeBlock from '../molecules/CodeBlock.vue'
-import { getInterface } from '../../data/interfaces'
+import { getInterface } from '../../data/generated/interfaces'
 import config from '../../config'
 
 const route = useRoute()

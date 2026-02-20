@@ -70,15 +70,16 @@ defineProps({
 .logo-text {
   fill: #204153;
 }
+</style>
 
-/* Dark mode: pure white text for maximum contrast */
-:global(.dark) .logo-text {
-  fill: #ffffff;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
+<style>
+/* Dark mode styles - must be unscoped to work with :global */
+.dark .logo-text {
+  fill: #ffffff !important;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
 }
 
-/* Add subtle glow to entire logo in dark mode for dragon parts */
-:global(.dark) .logo {
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.15));
+.dark .logo {
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
 }
 </style>

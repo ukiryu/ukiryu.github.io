@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Generated data (regenerated during build)
+src/data/generated/
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
