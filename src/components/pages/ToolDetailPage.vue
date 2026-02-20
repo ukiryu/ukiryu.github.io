@@ -41,7 +41,7 @@
               </a>
             </div>
             <div class="flex flex-wrap gap-2">
-              <a v-if="config.github.register" :href="`${config.github.register}/tree/main/tools/${tool.name}`" target="_blank" rel="noopener">
+              <a v-if="config.github.register" :href="`${config.github.register}/tree/${config.registerBranch}/tools/${tool.name}`" target="_blank" rel="noopener">
                 <BaseButton variant="secondary" size="sm">
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
@@ -59,9 +59,23 @@
         <div class="container-narrow">
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
             <div>
+              <div class="text-xs text-light-muted dark:text-dark-muted uppercase tracking-wider mb-1">Interface</div>
+              <router-link :to="`/register/interfaces/${tool.interface}`" class="text-brand-primary hover:text-brand-light font-medium">
+                {{ tool.interface }}
+              </router-link>
+            </div>
+            <div>
+              <div class="text-xs text-light-muted dark:text-dark-muted uppercase tracking-wider mb-1">Implementations</div>
+              <div class="flex flex-wrap gap-1">
+                <span v-for="impl in tool.implementations" :key="impl" class="px-2 py-0.5 text-sm rounded bg-brand-primary/10 text-brand-primary">
+                  {{ impl }}
+                </span>
+              </div>
+            </div>
+            <div>
               <div class="text-xs text-light-muted dark:text-dark-muted uppercase tracking-wider mb-1">Versions</div>
               <div class="flex flex-wrap gap-1">
-                <span v-for="v in tool.versions" :key="v" class="px-2 py-0.5 text-sm rounded bg-brand-primary/10 text-brand-primary">
+                <span v-for="v in tool.versions" :key="v" class="px-2 py-0.5 text-sm rounded bg-light-surface dark:bg-dark-bg border border-light-border dark:border-dark-border text-light-text dark:text-dark-text">
                   {{ v }}
                 </span>
               </div>
@@ -70,6 +84,8 @@
               <div class="text-xs text-light-muted dark:text-dark-muted uppercase tracking-wider mb-1">Commands</div>
               <div class="text-lg font-semibold text-light-text dark:text-dark-text">{{ tool.commands.length }}</div>
             </div>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-4">
             <div>
               <div class="text-xs text-light-muted dark:text-dark-muted uppercase tracking-wider mb-1">Platforms</div>
               <div class="flex flex-wrap gap-1">
@@ -246,16 +262,23 @@ const yamlExample = computed(() => {
   if (!tool.value) return ''
   return `ukiryu_schema: '1.0'
 name: ${tool.value.name}
+interface: ${tool.value.interface}
 display_name: ${tool.value.display_name}
-homepage: ${tool.value.homepage || ''}
-version: '${tool.value.version || 'generic'}'
-aliases:
-  - ${tool.value.aliases?.[0] || tool.value.name}
+homepage: ${tool.value.homepage || 'https://example.com'}
+
+implementations:
+  - name: ${tool.value.implementations?.[0] || 'default'}
+    display_name: ${tool.value.display_name}
+    detection:
+      executable: ${tool.value.name}
+    versions:
+      - equals: "${tool.value.versions?.[0] || '1.0'}"
+        file: "${tool.value.versions?.[0] || '1.0'}.yaml"
 
 profiles:
   - name: default
-    platforms: [macos, linux, windows]
-    shells: [unix]
+    platforms: [${tool.value.platforms?.join(', ') || 'macos, linux'}]
+    shells: [${tool.value.shells?.[0] || 'unix'}]
     commands:
       - name: ${tool.value.commands[0]?.name || 'execute'}
         description: ${tool.value.commands[0]?.description || 'Execute command'}`
