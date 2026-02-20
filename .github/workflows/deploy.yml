@@ -47,6 +47,9 @@ jobs:
 
       - name: Generate data from register
         run: node scripts/generate-data.js
+        env:
+          REGISTER_PATH: ./register
+          SCHEMAS_PATH: ./schemas
 
       - name: Build
         run: npm run build
