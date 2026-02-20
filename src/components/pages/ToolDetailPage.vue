@@ -295,6 +295,9 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Interactive Command Builder -->
+              <CommandBuilder :tool="tool" :command="cmd" />
             </div>
           </div>
         </div>
@@ -345,6 +348,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import BaseButton from '../atoms/BaseButton.vue'
 import CodeBlock from '../molecules/CodeBlock.vue'
+import CommandBuilder from '../command-builder/CommandBuilder.vue'
 import { getTool } from '../../data/generated/tools'
 import config from '../../config'
 
