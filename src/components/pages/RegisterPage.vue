@@ -31,6 +31,10 @@
       <div class="container-narrow">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div>
+            <div class="text-3xl font-bold text-brand-primary">{{ totalImplementations }}</div>
+            <div class="text-sm text-light-muted dark:text-dark-muted">Implementations</div>
+          </div>
+          <div>
             <div class="text-3xl font-bold text-brand-primary">{{ toolsList.length }}</div>
             <div class="text-sm text-light-muted dark:text-dark-muted">Tools</div>
           </div>
@@ -41,10 +45,6 @@
           <div>
             <div class="text-3xl font-bold text-brand-primary">{{ totalCommands }}</div>
             <div class="text-sm text-light-muted dark:text-dark-muted">Commands</div>
-          </div>
-          <div>
-            <div class="text-3xl font-bold text-brand-primary">v1</div>
-            <div class="text-sm text-light-muted dark:text-dark-muted">Register Branch</div>
           </div>
         </div>
       </div>
@@ -198,12 +198,14 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { toolsList, categories } from '../../data/tools-detail'
+import { toolsList, categories, getTotalImplementations } from '../../data/tools-detail'
 import { interfacesList } from '../../data/interfaces'
 
 const searchQuery = ref('')
 const selectedCategory = ref(null)
 const activeTab = ref('tools')
+
+const totalImplementations = computed(() => getTotalImplementations())
 
 const totalCommands = computed(() => {
   const toolCommands = toolsList.reduce((acc, t) => acc + t.commands.length, 0)

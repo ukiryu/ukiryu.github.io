@@ -20,88 +20,88 @@ export const categories = [
 export const toolsList = [
   // Archive & Compression
   { name: 'tar', display_name: 'tar', description: 'Archive utility for creating and extracting tape archives', interface: 'tar', implementations: ['gnu', 'busybox'], versions: ['1.35', '1.36.1'], commands: ['create', 'extract', 'list'], category: 'Archive & Compression' },
-  { name: 'zip', display_name: 'zip', description: 'Package and compress files into archives', interface: 'zip', implementations: ['generic'], versions: ['generic'], commands: ['zip'], category: 'Archive & Compression' },
-  { name: 'unzip', display_name: 'unzip', description: 'List, test, and extract ZIP archives', interface: 'unzip', implementations: ['generic'], versions: ['generic'], commands: ['unzip', 'list', 'test'], category: 'Archive & Compression' },
+  { name: 'zip', display_name: 'zip', description: 'Package and compress files into archives', interface: 'zip', implementations: ['default'], versions: ['generic'], commands: ['zip'], category: 'Archive & Compression' },
+  { name: 'unzip', display_name: 'unzip', description: 'List, test, and extract ZIP archives', interface: 'unzip', implementations: ['default'], versions: ['generic'], commands: ['unzip', 'list', 'test'], category: 'Archive & Compression' },
   { name: 'gzip', display_name: 'gzip', description: 'GNU zip compression utility', interface: 'gzip', implementations: ['gnu', 'busybox'], versions: ['1.10', '1.12', '1.36.1'], commands: ['compress', 'decompress'], category: 'Archive & Compression' },
-  { name: 'bzip2', display_name: 'bzip2', description: 'High-quality data compression program', interface: 'bzip2', implementations: ['generic'], versions: ['generic'], commands: ['compress', 'decompress'], category: 'Archive & Compression' },
-  { name: 'xz', display_name: 'XZ', description: 'LZMA compression utility', interface: 'xz', implementations: ['generic'], versions: ['generic'], commands: ['compress', 'decompress'], category: 'Archive & Compression' },
-  { name: 'zstd', display_name: 'zstd', description: 'Zstandard compression', interface: 'zstd', implementations: ['generic'], versions: ['generic'], commands: ['compress', 'decompress'], category: 'Archive & Compression' },
-  { name: 'p7zip', display_name: 'p7zip', description: '7-Zip file archiver', interface: 'p7zip', implementations: ['generic'], versions: ['generic'], commands: ['compress', 'decompress', 'list'], category: 'Archive & Compression' },
+  { name: 'bzip2', display_name: 'bzip2', description: 'High-quality data compression program', interface: 'bzip2', implementations: ['gnu', 'busybox'], versions: ['generic'], commands: ['compress', 'decompress'], category: 'Archive & Compression' },
+  { name: 'xz', display_name: 'XZ', description: 'LZMA compression utility', interface: 'xz', implementations: ['default'], versions: ['generic'], commands: ['compress', 'decompress'], category: 'Archive & Compression' },
+  { name: 'zstd', display_name: 'zstd', description: 'Zstandard compression', interface: 'zstd', implementations: ['default'], versions: ['generic'], commands: ['compress', 'decompress'], category: 'Archive & Compression' },
+  { name: 'p7zip', display_name: 'p7zip', description: '7-Zip file archiver', interface: 'p7zip', implementations: ['default'], versions: ['generic'], commands: ['compress', 'decompress', 'list'], category: 'Archive & Compression' },
 
   // Image Processing
   { name: 'imagemagick', display_name: 'ImageMagick', description: 'Image Processing Suite for creating, editing, and converting images', interface: 'imagemagick', implementations: ['default'], versions: ['7.1', '6.9'], commands: ['convert', 'identify', 'mogrify', 'composite'], category: 'Image Processing' },
   { name: 'convert', display_name: 'ImageMagick Convert', description: 'Image format conversion (ImageMagick 6)', interface: 'convert', implementations: ['default'], versions: ['6.9'], commands: ['convert'], category: 'Image Processing' },
   { name: 'magick', display_name: 'ImageMagick Magick', description: 'ImageMagick 7 unified command', interface: 'magick', implementations: ['default'], versions: ['7.1'], commands: ['magick'], category: 'Image Processing' },
   { name: 'inkscape', display_name: 'Inkscape', description: 'Vector graphics editor', interface: 'inkscape', implementations: ['default'], versions: ['1.3', '1.2'], commands: ['export', 'convert'], category: 'Image Processing' },
-  { name: 'optipng', display_name: 'OptiPNG', description: 'PNG optimizer', interface: 'optipng', implementations: ['generic'], versions: ['generic'], commands: ['optimize'], category: 'Image Processing' },
-  { name: 'jpegoptim', display_name: 'jpegoptim', description: 'JPEG optimization tool', interface: 'jpegoptim', implementations: ['generic'], versions: ['generic'], commands: ['optimize'], category: 'Image Processing' },
-  { name: 'pngquant', display_name: 'pngquant', description: 'PNG image optimizer with lossy compression', interface: 'pngquant', implementations: ['generic'], versions: ['generic'], commands: ['quantize'], category: 'Image Processing' },
-  { name: 'gifsicle', display_name: 'gifsicle', description: 'GIF image manipulator', interface: 'gifsicle', implementations: ['generic'], versions: ['generic'], commands: ['optimize', 'edit'], category: 'Image Processing' },
-  { name: 'cwebp', display_name: 'cwebp', description: 'WebP image encoder', interface: 'cwebp', implementations: ['generic'], versions: ['generic'], commands: ['encode'], category: 'Image Processing' },
-  { name: 'dwebp', display_name: 'dwebp', description: 'WebP image decoder', interface: 'dwebp', implementations: ['generic'], versions: ['generic'], commands: ['decode'], category: 'Image Processing' },
-  { name: 'exiftool', display_name: 'ExifTool', description: 'Read, write, and manipulate image metadata', interface: 'exiftool', implementations: ['generic'], versions: ['generic'], commands: ['read', 'write', 'copy'], category: 'Image Processing' },
+  { name: 'optipng', display_name: 'OptiPNG', description: 'PNG optimizer', interface: 'optipng', implementations: ['default'], versions: ['generic'], commands: ['optimize'], category: 'Image Processing' },
+  { name: 'jpegoptim', display_name: 'jpegoptim', description: 'JPEG optimization tool', interface: 'jpegoptim', implementations: ['default'], versions: ['generic'], commands: ['optimize'], category: 'Image Processing' },
+  { name: 'pngquant', display_name: 'pngquant', description: 'PNG image optimizer with lossy compression', interface: 'pngquant', implementations: ['default'], versions: ['generic'], commands: ['quantize'], category: 'Image Processing' },
+  { name: 'gifsicle', display_name: 'gifsicle', description: 'GIF image manipulator', interface: 'gifsicle', implementations: ['default'], versions: ['generic'], commands: ['optimize', 'edit'], category: 'Image Processing' },
+  { name: 'cwebp', display_name: 'cwebp', description: 'WebP image encoder', interface: 'cwebp', implementations: ['default'], versions: ['generic'], commands: ['encode'], category: 'Image Processing' },
+  { name: 'dwebp', display_name: 'dwebp', description: 'WebP image decoder', interface: 'dwebp', implementations: ['default'], versions: ['generic'], commands: ['decode'], category: 'Image Processing' },
+  { name: 'exiftool', display_name: 'ExifTool', description: 'Read, write, and manipulate image metadata', interface: 'exiftool', implementations: ['default'], versions: ['generic'], commands: ['read', 'write', 'copy'], category: 'Image Processing' },
 
   // Video & Audio
   { name: 'ffmpeg', display_name: 'FFmpeg', description: 'Complete solution to record, convert, and stream audio and video', interface: 'ffmpeg', implementations: ['default'], versions: ['8.0', '7.0', '6.1'], commands: ['convert', 'probe', 'extract'], category: 'Video & Audio' },
-  { name: 'sox', display_name: 'SoX', description: 'Sound eXchange - audio processing tool', interface: 'sox', implementations: ['generic'], versions: ['generic'], commands: ['convert', 'play', 'record'], category: 'Video & Audio' },
+  { name: 'sox', display_name: 'SoX', description: 'Sound eXchange - audio processing tool', interface: 'sox', implementations: ['default'], versions: ['generic'], commands: ['convert', 'play', 'record'], category: 'Video & Audio' },
 
   // Document Conversion
   { name: 'ghostscript', display_name: 'Ghostscript', description: 'Interpreter for PostScript and PDF', interface: 'ghostscript', implementations: ['default'], versions: ['10.0', '9.56'], commands: ['convert', 'merge', 'extract'], category: 'Document Conversion' },
   { name: 'pandoc', display_name: 'Pandoc', description: 'Universal markup converter', interface: 'pandoc', implementations: ['default'], versions: ['3.1'], commands: ['convert'], category: 'Document Conversion' },
-  { name: 'libreoffice', display_name: 'LibreOffice', description: 'Office suite with command-line conversion', interface: 'libreoffice', implementations: ['generic'], versions: ['generic'], commands: ['convert'], category: 'Document Conversion' },
-  { name: 'pdf2ps', display_name: 'pdf2ps', description: 'PDF to PostScript converter', interface: 'pdf2ps', implementations: ['generic'], versions: ['generic'], commands: ['convert'], category: 'Document Conversion' },
-  { name: 'pdftk', display_name: 'PDFtk', description: 'PDF toolkit for manipulation', interface: 'pdftk', implementations: ['generic'], versions: ['generic'], commands: ['merge', 'split', 'rotate'], category: 'Document Conversion' },
+  { name: 'libreoffice', display_name: 'LibreOffice', description: 'Office suite with command-line conversion', interface: 'libreoffice', implementations: ['default'], versions: ['generic'], commands: ['convert'], category: 'Document Conversion' },
+  { name: 'pdf2ps', display_name: 'pdf2ps', description: 'PDF to PostScript converter', interface: 'pdf2ps', implementations: ['default'], versions: ['generic'], commands: ['convert'], category: 'Document Conversion' },
+  { name: 'pdftk', display_name: 'PDFtk', description: 'PDF toolkit for manipulation', interface: 'pdftk', implementations: ['default'], versions: ['generic'], commands: ['merge', 'split', 'rotate'], category: 'Document Conversion' },
 
   // System Utilities
-  { name: 'cat', display_name: 'cat', description: 'Concatenate and display files', interface: 'cat', implementations: ['generic'], versions: ['generic'], commands: ['cat'], category: 'System Utilities' },
-  { name: 'cut', display_name: 'cut', description: 'Remove sections from each line of files', interface: 'cut', implementations: ['generic'], versions: ['generic'], commands: ['cut'], category: 'System Utilities' },
-  { name: 'head', display_name: 'head', description: 'Output the first part of files', interface: 'head', implementations: ['generic'], versions: ['generic'], commands: ['head'], category: 'System Utilities' },
-  { name: 'tail', display_name: 'tail', description: 'Output the last part of files', interface: 'tail', implementations: ['generic'], versions: ['generic'], commands: ['tail', 'follow'], category: 'System Utilities' },
-  { name: 'sort', display_name: 'sort', description: 'Sort lines of text', interface: 'sort', implementations: ['gnu', 'bsd'], versions: ['generic'], commands: ['sort'], category: 'System Utilities' },
-  { name: 'wc', display_name: 'wc', description: 'Print newline, word, and byte counts', interface: 'wc', implementations: ['generic'], versions: ['generic'], commands: ['wc'], category: 'System Utilities' },
-  { name: 'tee', display_name: 'tee', description: 'Read from stdin and write to stdout and files', interface: 'tee', implementations: ['generic'], versions: ['generic'], commands: ['tee'], category: 'System Utilities' },
-  { name: 'diff', display_name: 'diff', description: 'Compare files line by line', interface: 'diff', implementations: ['generic'], versions: ['generic'], commands: ['diff', 'cmp'], category: 'System Utilities' },
-  { name: 'xargs', display_name: 'xargs', description: 'Build and execute command lines from input', interface: 'xargs', implementations: ['gnu', 'bsd'], versions: ['generic'], commands: ['xargs'], category: 'System Utilities' },
-  { name: 'make', display_name: 'make', description: 'Build automation tool', interface: 'make', implementations: ['gnu', 'bsd'], versions: ['generic'], commands: ['make'], category: 'System Utilities' },
-  { name: 'htop', display_name: 'htop', description: 'Interactive process viewer', interface: 'htop', implementations: ['generic'], versions: ['generic'], commands: ['htop'], category: 'System Utilities' },
-  { name: 'lsof', display_name: 'lsof', description: 'List open files', interface: 'lsof', implementations: ['generic'], versions: ['generic'], commands: ['lsof'], category: 'System Utilities' },
-  { name: 'tree', display_name: 'tree', description: 'List files in directory tree format', interface: 'tree', implementations: ['generic'], versions: ['generic'], commands: ['tree'], category: 'System Utilities' },
-  { name: 'ping', display_name: 'ping', description: 'Send ICMP echo requests', interface: 'ping', implementations: ['gnu', 'bsd'], versions: ['generic'], commands: ['ping'], category: 'System Utilities' },
+  { name: 'cat', display_name: 'cat', description: 'Concatenate and display files', interface: 'cat', implementations: ['default'], versions: ['generic'], commands: ['cat'], category: 'System Utilities' },
+  { name: 'cut', display_name: 'cut', description: 'Remove sections from each line of files', interface: 'cut', implementations: ['default'], versions: ['generic'], commands: ['cut'], category: 'System Utilities' },
+  { name: 'head', display_name: 'head', description: 'Output the first part of files', interface: 'head', implementations: ['default'], versions: ['generic'], commands: ['head'], category: 'System Utilities' },
+  { name: 'tail', display_name: 'tail', description: 'Output the last part of files', interface: 'tail', implementations: ['default'], versions: ['generic'], commands: ['tail', 'follow'], category: 'System Utilities' },
+  { name: 'sort', display_name: 'sort', description: 'Sort lines of text', interface: 'sort', implementations: ['default'], versions: ['generic'], commands: ['sort'], category: 'System Utilities' },
+  { name: 'wc', display_name: 'wc', description: 'Print newline, word, and byte counts', interface: 'wc', implementations: ['default'], versions: ['generic'], commands: ['wc'], category: 'System Utilities' },
+  { name: 'tee', display_name: 'tee', description: 'Read from stdin and write to stdout and files', interface: 'tee', implementations: ['default'], versions: ['generic'], commands: ['tee'], category: 'System Utilities' },
+  { name: 'diff', display_name: 'diff', description: 'Compare files line by line', interface: 'diff', implementations: ['default'], versions: ['generic'], commands: ['diff', 'cmp'], category: 'System Utilities' },
+  { name: 'xargs', display_name: 'xargs', description: 'Build and execute command lines from input', interface: 'xargs', implementations: ['default'], versions: ['generic'], commands: ['xargs'], category: 'System Utilities' },
+  { name: 'make', display_name: 'make', description: 'Build automation tool', interface: 'make', implementations: ['default'], versions: ['generic'], commands: ['make'], category: 'System Utilities' },
+  { name: 'htop', display_name: 'htop', description: 'Interactive process viewer', interface: 'htop', implementations: ['default'], versions: ['generic'], commands: ['htop'], category: 'System Utilities' },
+  { name: 'lsof', display_name: 'lsof', description: 'List open files', interface: 'lsof', implementations: ['default'], versions: ['generic'], commands: ['lsof'], category: 'System Utilities' },
+  { name: 'tree', display_name: 'tree', description: 'List files in directory tree format', interface: 'tree', implementations: ['default'], versions: ['generic'], commands: ['tree'], category: 'System Utilities' },
+  { name: 'ping', display_name: 'ping', description: 'Send ICMP echo requests', interface: 'ping', implementations: ['bsd', 'gnu', 'windows'], versions: ['generic'], commands: ['ping'], category: 'System Utilities' },
 
   // Text Processing
-  { name: 'grep', display_name: 'grep', description: 'Print lines matching a pattern', interface: 'grep', implementations: ['gnu', 'bsd'], versions: ['generic'], commands: ['grep', 'egrep', 'fgrep'], category: 'Text Processing' },
-  { name: 'sed', display_name: 'sed', description: 'Stream editor for filtering and transforming text', interface: 'sed', implementations: ['gnu', 'bsd'], versions: ['generic'], commands: ['sed'], category: 'Text Processing' },
-  { name: 'awk', display_name: 'AWK', description: 'Domain-specific language for text processing', interface: 'awk', implementations: ['gnu', 'bsd'], versions: ['generic'], commands: ['awk'], category: 'Text Processing' },
-  { name: 'jq', display_name: 'jq', description: 'Lightweight command-line JSON processor', interface: 'jq', implementations: ['generic'], versions: ['generic'], commands: ['jq'], category: 'Text Processing' },
-  { name: 'yq', display_name: 'yq', description: 'YAML processor', interface: 'yq', implementations: ['generic'], versions: ['generic'], commands: ['yq'], category: 'Text Processing' },
-  { name: 'yq_jq', display_name: 'yq (jq backend)', description: 'YAML processor using jq', interface: 'yq_jq', implementations: ['generic'], versions: ['generic'], commands: ['yq'], category: 'Text Processing' },
-  { name: 'less', display_name: 'less', description: 'Pager program similar to more', interface: 'less', implementations: ['generic'], versions: ['generic'], commands: ['less'], category: 'Text Processing' },
-  { name: 'bat', display_name: 'Bat', description: 'Cat clone with syntax highlighting', interface: 'bat', implementations: ['generic'], versions: ['generic'], commands: ['bat'], category: 'Text Processing' },
+  { name: 'grep', display_name: 'grep', description: 'Print lines matching a pattern', interface: 'grep', implementations: ['gnu', 'busybox'], versions: ['generic'], commands: ['grep', 'egrep', 'fgrep'], category: 'Text Processing' },
+  { name: 'sed', display_name: 'sed', description: 'Stream editor for filtering and transforming text', interface: 'sed', implementations: ['gnu', 'busybox'], versions: ['generic'], commands: ['sed'], category: 'Text Processing' },
+  { name: 'awk', display_name: 'AWK', description: 'Domain-specific language for text processing', interface: 'awk', implementations: ['bsd', 'gnu', 'busybox'], versions: ['generic'], commands: ['awk'], category: 'Text Processing' },
+  { name: 'jq', display_name: 'jq', description: 'Lightweight command-line JSON processor', interface: 'jq', implementations: ['default'], versions: ['generic'], commands: ['jq'], category: 'Text Processing' },
+  { name: 'yq', display_name: 'yq', description: 'YAML processor', interface: 'yq', implementations: ['default'], versions: ['generic'], commands: ['yq'], category: 'Text Processing' },
+  { name: 'yq_jq', display_name: 'yq (jq backend)', description: 'YAML processor using jq', interface: 'yq_jq', implementations: ['default'], versions: ['generic'], commands: ['yq'], category: 'Text Processing' },
+  { name: 'less', display_name: 'less', description: 'Pager program similar to more', interface: 'less', implementations: ['default'], versions: ['generic'], commands: ['less'], category: 'Text Processing' },
+  { name: 'bat', display_name: 'Bat', description: 'Cat clone with syntax highlighting', interface: 'bat', implementations: ['default'], versions: ['generic'], commands: ['bat'], category: 'Text Processing' },
 
   // File Management
-  { name: 'find', display_name: 'find', description: 'Search for files in a directory hierarchy', interface: 'find', implementations: ['gnu', 'bsd'], versions: ['generic'], commands: ['find'], category: 'File Management' },
-  { name: 'fd', display_name: 'fd', description: 'Simple, fast alternative to find', interface: 'fd', implementations: ['generic'], versions: ['generic'], commands: ['fd'], category: 'File Management' },
-  { name: 'fzf', display_name: 'fzf', description: 'Fuzzy finder for command-line', interface: 'fzf', implementations: ['generic'], versions: ['generic'], commands: ['fzf'], category: 'File Management' },
-  { name: 'gl', display_name: 'gl', description: 'Fuzzy path finder for git ls-files', interface: 'gl', implementations: ['generic'], versions: ['generic'], commands: ['gl'], category: 'File Management' },
-  { name: 'rg', display_name: 'ripgrep', description: 'Recursively search directories for regex patterns', interface: 'rg', implementations: ['generic'], versions: ['generic'], commands: ['rg'], category: 'File Management' },
-  { name: 'ripgrep-all', display_name: 'ripgrep-all', description: 'ripgrep with searchable archives support', interface: 'ripgrep-all', implementations: ['generic'], versions: ['generic'], commands: ['rga'], category: 'File Management' },
-  { name: 'rsync', display_name: 'rsync', description: 'Fast incremental file transfer', interface: 'rsync', implementations: ['generic'], versions: ['generic'], commands: ['rsync'], category: 'File Management' },
-  { name: 'rclone', display_name: 'rclone', description: 'Rsync for cloud storage', interface: 'rclone', implementations: ['generic'], versions: ['generic'], commands: ['rclone'], category: 'File Management' },
-  { name: 'restic', display_name: 'restic', description: 'Fast, secure backup program', interface: 'restic', implementations: ['generic'], versions: ['generic'], commands: ['backup', 'restore'], category: 'File Management' },
+  { name: 'find', display_name: 'find', description: 'Search for files in a directory hierarchy', interface: 'find', implementations: ['gnu', 'busybox'], versions: ['generic'], commands: ['find'], category: 'File Management' },
+  { name: 'fd', display_name: 'fd', description: 'Simple, fast alternative to find', interface: 'fd', implementations: ['default'], versions: ['generic'], commands: ['fd'], category: 'File Management' },
+  { name: 'fzf', display_name: 'fzf', description: 'Fuzzy finder for command-line', interface: 'fzf', implementations: ['default'], versions: ['generic'], commands: ['fzf'], category: 'File Management' },
+  { name: 'gl', display_name: 'gl', description: 'Fuzzy path finder for git ls-files', interface: 'gl', implementations: ['default'], versions: ['generic'], commands: ['gl'], category: 'File Management' },
+  { name: 'rg', display_name: 'ripgrep', description: 'Recursively search directories for regex patterns', interface: 'rg', implementations: ['default'], versions: ['generic'], commands: ['rg'], category: 'File Management' },
+  { name: 'ripgrep-all', display_name: 'ripgrep-all', description: 'ripgrep with searchable archives support', interface: 'ripgrep-all', implementations: ['default'], versions: ['generic'], commands: ['rga'], category: 'File Management' },
+  { name: 'rsync', display_name: 'rsync', description: 'Fast incremental file transfer', interface: 'rsync', implementations: ['default'], versions: ['generic'], commands: ['rsync'], category: 'File Management' },
+  { name: 'rclone', display_name: 'rclone', description: 'Rsync for cloud storage', interface: 'rclone', implementations: ['default'], versions: ['generic'], commands: ['rclone'], category: 'File Management' },
+  { name: 'restic', display_name: 'restic', description: 'Fast, secure backup program', interface: 'restic', implementations: ['default'], versions: ['generic'], commands: ['backup', 'restore'], category: 'File Management' },
 
   // Network
-  { name: 'curl', display_name: 'cURL', description: 'Command-line tool for transferring data with URLs', interface: 'curl', implementations: ['generic'], versions: ['generic'], commands: ['request', 'download', 'upload'], category: 'Network' },
-  { name: 'wget', display_name: 'wget', description: 'Network downloader', interface: 'wget', implementations: ['generic'], versions: ['generic'], commands: ['download'], category: 'Network' },
-  { name: 'ssh', display_name: 'SSH', description: 'Secure shell protocol client', interface: 'ssh', implementations: ['generic'], versions: ['generic'], commands: ['ssh'], category: 'Network' },
-  { name: 'scp', display_name: 'scp', description: 'Secure copy protocol', interface: 'scp', implementations: ['generic'], versions: ['generic'], commands: ['scp'], category: 'Network' },
-  { name: 'yt-dlp', display_name: 'yt-dlp', description: 'Command-line audio/video downloader', interface: 'yt-dlp', implementations: ['generic'], versions: ['generic'], commands: ['download'], category: 'Network' },
+  { name: 'curl', display_name: 'cURL', description: 'Command-line tool for transferring data with URLs', interface: 'curl', implementations: ['default'], versions: ['generic'], commands: ['request', 'download', 'upload'], category: 'Network' },
+  { name: 'wget', display_name: 'wget', description: 'Network downloader', interface: 'wget', implementations: ['gnu', 'busybox'], versions: ['generic'], commands: ['download'], category: 'Network' },
+  { name: 'ssh', display_name: 'SSH', description: 'Secure shell protocol client', interface: 'ssh', implementations: ['default'], versions: ['generic'], commands: ['ssh'], category: 'Network' },
+  { name: 'scp', display_name: 'scp', description: 'Secure copy protocol', interface: 'scp', implementations: ['default'], versions: ['generic'], commands: ['scp'], category: 'Network' },
+  { name: 'yt-dlp', display_name: 'yt-dlp', description: 'Command-line audio/video downloader', interface: 'yt-dlp', implementations: ['default'], versions: ['generic'], commands: ['download'], category: 'Network' },
 
   // Development
-  { name: 'git', display_name: 'Git', description: 'Distributed version control system', interface: 'git', implementations: ['generic'], versions: ['generic'], commands: ['clone', 'commit', 'push', 'pull', 'branch', 'checkout'], category: 'Development' },
-  { name: 'ansible', display_name: 'Ansible', description: 'Automation engine for configuring systems', interface: 'ansible', implementations: ['generic'], versions: ['generic'], commands: ['playbook', 'adhoc'], category: 'Development' },
-  { name: 'openssl', display_name: 'OpenSSL', description: 'Cryptography toolkit', interface: 'openssl', implementations: ['generic'], versions: ['generic'], commands: ['encrypt', 'decrypt', 'cert'], category: 'Development' },
-  { name: 'vim', display_name: 'Vim', description: 'Vi IMproved text editor', interface: 'vim', implementations: ['generic'], versions: ['generic'], commands: ['vim', 'view', 'vimdiff'], category: 'Development' },
-  { name: 'ukiryu', display_name: 'Ukiryu', description: 'Declarative CLI framework', interface: 'ukiryu', implementations: ['generic'], versions: ['generic'], commands: ['ukiryu'], category: 'Development' },
+  { name: 'git', display_name: 'Git', description: 'Distributed version control system', interface: 'git', implementations: ['default'], versions: ['generic'], commands: ['clone', 'commit', 'push', 'pull', 'branch', 'checkout'], category: 'Development' },
+  { name: 'ansible', display_name: 'Ansible', description: 'Automation engine for configuring systems', interface: 'ansible', implementations: ['default'], versions: ['generic'], commands: ['playbook', 'adhoc'], category: 'Development' },
+  { name: 'openssl', display_name: 'OpenSSL', description: 'Cryptography toolkit', interface: 'openssl', implementations: ['default'], versions: ['generic'], commands: ['encrypt', 'decrypt', 'cert'], category: 'Development' },
+  { name: 'vim', display_name: 'Vim', description: 'Vi IMproved text editor', interface: 'vim', implementations: ['default'], versions: ['generic'], commands: ['vim', 'view', 'vimdiff'], category: 'Development' },
+  { name: 'ukiryu', display_name: 'Ukiryu', description: 'Declarative CLI framework', interface: 'ukiryu', implementations: ['default'], versions: ['generic'], commands: ['ukiryu'], category: 'Development' },
 ]
 
 // Detailed tool information for tool detail pages
@@ -261,7 +261,7 @@ export const toolsDetail = {
     description: 'Command-line tool for transferring data with URLs.',
     version: 'generic',
     versions: ['generic'],
-    implementations: ['generic'],
+    implementations: ['default'],
     commands: [
       {
         name: 'request',
@@ -295,7 +295,7 @@ export const toolsDetail = {
     description: 'Distributed version control system.',
     version: 'generic',
     versions: ['generic'],
-    implementations: ['generic'],
+    implementations: ['default'],
     commands: [
       {
         name: 'clone',
@@ -391,9 +391,15 @@ export function getToolsByInterface(interfaceName) {
   return toolsList.filter(t => t.interface === interfaceName)
 }
 
+// Count total implementations
+export function getTotalImplementations() {
+  return toolsList.reduce((acc, t) => acc + t.implementations.length, 0)
+}
+
 // Stats
 export const stats = {
   totalTools: toolsList.length,
+  totalImplementations: getTotalImplementations(),
   totalCommands: toolsList.reduce((acc, t) => acc + t.commands.length, 0),
   categories: categories.length,
 }
