@@ -52,7 +52,7 @@ jobs:
           SCHEMAS_PATH: ./schemas
 
       - name: Build
-        run: npm run build
+        run: npx vite build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
