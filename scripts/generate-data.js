@@ -254,10 +254,15 @@ function generateToolsDetail(tools) {
 
   for (const tool of tools) {
     // Collect all data from all versions and implementations
+    // Prioritize implementation data (more detailed) over version data
+    const versionData = tool.versions.map(v => v.data)
+    const implementationData = Object.values(tool.implementations).flat().map(i => i.data)
+
+    // Process implementation data first (more detailed), then version data
     const allData = [
-      tool.index,
-      ...tool.versions.map(v => v.data),
-      ...Object.values(tool.implementations).flat().map(i => i.data)
+      ...implementationData,
+      ...versionData,
+      tool.index
     ].filter(Boolean)
 
     // Merge profiles from all sources
@@ -265,7 +270,7 @@ function generateToolsDetail(tools) {
     const commands = new Map()
 
     for (const data of allData) {
-      // Execution profiles (old format)
+      // Execution profiles (old format - more detailed)
       if (data.execution_profiles) {
         for (const profile of data.execution_profiles) {
           profiles.push({
@@ -279,9 +284,8 @@ function generateToolsDetail(tools) {
 
           if (profile.commands) {
             for (const cmd of profile.commands) {
-              if (!commands.has(cmd.name)) {
-                commands.set(cmd.name, cmd)
-              }
+              // Merge command: prefer detailed over simple
+              mergeCommand(commands, cmd)
             }
           }
         }
@@ -301,9 +305,7 @@ function generateToolsDetail(tools) {
 
           if (profile.commands) {
             for (const cmd of profile.commands) {
-              if (!commands.has(cmd.name)) {
-                commands.set(cmd.name, cmd)
-              }
+              mergeCommand(commands, cmd)
             }
           }
         }
@@ -311,7 +313,7 @@ function generateToolsDetail(tools) {
     }
 
     // Build the detail object
-    const firstData = tool.versions[0]?.data || Object.values(tool.implementations)[0]?.[0]?.data || tool.index || {}
+    const firstData = implementationData[0] || versionData[0] || tool.index || {}
 
     details[tool.name] = {
       name: tool.name,
@@ -319,7 +321,7 @@ function generateToolsDetail(tools) {
       interface: firstData.implements || firstData.interface || tool.index?.interface || tool.name,
       homepage: firstData.homepage || tool.index?.homepage || '',
       description: firstData.description || tool.index?.description || '',
-      version: tool.versions[0]?.version || 'generic',
+      version: versionData[0]?.version || tool.versions[0]?.version || 'generic',
       versions: tool.versions.map(v => v.version),
       implementations: Object.keys(tool.implementations).length > 0
         ? Object.keys(tool.implementations)
@@ -333,6 +335,57 @@ function generateToolsDetail(tools) {
   }
 
   return details
+}
+
+/**
+ * Merge a command into the commands map, preferring more detailed versions
+ */
+function mergeCommand(commandsMap, cmd) {
+  if (!cmd || !cmd.name) return
+
+  const existing = commandsMap.get(cmd.name)
+
+  if (!existing) {
+    // New command, add it
+    commandsMap.set(cmd.name, cmd)
+  } else {
+    // Command exists - merge if new one has more details
+    const existingDetail = countDetails(existing)
+    const newDetail = countDetails(cmd)
+
+    if (newDetail > existingDetail) {
+      // New command is more detailed, replace
+      commandsMap.set(cmd.name, cmd)
+    } else if (newDetail === existingDetail && newDetail > 0) {
+      // Same detail level - merge missing properties
+      const merged = { ...cmd, ...existing }
+      // Ensure we keep arrays from the more detailed version
+      if (cmd.arguments?.length > (existing.arguments?.length || 0)) {
+        merged.arguments = cmd.arguments
+      }
+      if (cmd.options?.length > (existing.options?.length || 0)) {
+        merged.options = cmd.options
+      }
+      if (cmd.flags?.length > (existing.flags?.length || 0)) {
+        merged.flags = cmd.flags
+      }
+      commandsMap.set(cmd.name, merged)
+    }
+  }
+}
+
+/**
+ * Count the level of detail in a command
+ */
+function countDetails(cmd) {
+  let count = 0
+  if (cmd.arguments?.length) count += cmd.arguments.length
+  if (cmd.options?.length) count += cmd.options.length
+  if (cmd.flags?.length) count += cmd.flags.length
+  if (cmd.post_options?.length) count += cmd.post_options.length
+  if (cmd.usage) count += 1
+  if (cmd.description) count += 1
+  return count
 }
 
 /**
