@@ -9,6 +9,13 @@
           Model-driven design separates concerns into distinct layers that work
           together to provide a unified CLI experience.
         </p>
+        <p class="text-light-muted dark:text-dark-muted max-w-2xl mx-auto mt-4">
+          The runtime migration puts YAML parsing, validation, shell escaping and
+          command planning in one Rust core, shared by the Rust CLI, Ruby,
+          Python and TypeScript/WebAssembly. Register and schema YAML keep
+          their existing contract. Browser runtimes accept definitions as text
+          and have no filesystem or subprocess access.
+        </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
