@@ -7,6 +7,23 @@
       <p class="text-light-muted dark:text-dark-muted mb-8 max-w-xl mx-auto">
         Install the gem and start defining your CLI tools in minutes.
       </p>
+      <p class="text-light-muted dark:text-dark-muted mb-8 max-w-2xl mx-auto">
+        The gem below is the classic Ruby implementation. The Rust CLI and
+        new Ruby, Python and TypeScript/WASM packages are development
+        candidates pending an approved release train.
+      </p>
+      <p class="text-light-muted dark:text-dark-muted mb-8 max-w-2xl mx-auto">
+        Try the matching CI artifact from
+        <a class="text-brand-primary underline" href="https://github.com/ukiryu/ukiryu-rs">ukiryu-rs</a>,
+        <a class="text-brand-primary underline" href="https://github.com/ukiryu/ukiryu-ruby">ukiryu-ruby</a>,
+        <a class="text-brand-primary underline" href="https://github.com/ukiryu/ukiryu-python">ukiryu-python</a> or
+        <a class="text-brand-primary underline" href="https://github.com/ukiryu/ukiryu-ts">ukiryu-ts</a>.
+        Install a native gem with <code>gem install --local PATH.gem</code>,
+        a wheel with <code>python -m pip install PATH.whl</code>, or an npm
+        tarball with <code>npm install PATH.tgz</code>. For the CLI, verify the
+        archive's <code>BUILT_FROM</code> record and place the extracted binary
+        on <code>PATH</code>.
+      </p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
         <BaseButton
